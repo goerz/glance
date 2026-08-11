@@ -44,6 +44,21 @@ Alternatively, you can install Glance directly. The installation is slightly com
 
   <p><img src="./AppStore/Assets/Screenshots/ScreenshotJupyterNotebook.png" alt="" width="600"></p>
 
+- **Pluto.jl notebook**: `.jl` files whose first line is `### A Pluto.jl notebook ###`. Cells are
+  shown in notebook order with their fold state respected, styled with CSS adapted from
+  [Pluto](https://github.com/fonsp/Pluto.jl)'s own frontend. Any other `.jl` file is previewed as
+  Julia source code, as before.
+
+  Cell outputs — rendered Markdown, plots, tables, tree views and errors — come from the
+  `<notebook>.jl.pluto-cache.toml` sidecar written by
+  [SpaceStation.jl](https://github.com/GroupTherapyOrg/SpaceStation.jl). A notebook that has never
+  been run, or whose sidecar cannot be read, still previews as prose and highlighted code.
+
+  Reading that sidecar needs a sandbox exception (see `QLPlugin/QLPlugin.entitlements`), because a
+  Quick Look extension is otherwise limited to the file it was asked to preview. Interactive output
+  does not survive a static render: `<script>`-driven results, `@bind` widgets and PlutoUI's table
+  of contents are dropped.
+
 - **Tab-separated values** (parsed using [SwiftCSV](https://github.com/swiftcsv/SwiftCSV)): `.tab`, `.tsv`
 
   <p><img src="./AppStore/Assets/Screenshots/ScreenshotTSV.png" alt="" width="600"></p>

@@ -28,8 +28,9 @@ enum HTMLRenderer {
 	/// Throws an error if the return value indicates one. Because all `HTMLConverter` return values
 	/// are C strings, errors are implemented as return values starting with "error: ".
 	static func throwIfErrored(fileType: String, returnValue: String) throws {
-		if returnValue.hasPrefix("error :") {
-			let startIndex = returnValue.index(returnValue.startIndex, offsetBy: 7)
+		let errorPrefix = "error: "
+		if returnValue.hasPrefix(errorPrefix) {
+			let startIndex = returnValue.index(returnValue.startIndex, offsetBy: errorPrefix.count)
 			let errorMessage = returnValue[startIndex ..< returnValue.endIndex]
 			throw HTMLRendererError.rendererError(
 				fileType: fileType,
@@ -51,6 +52,16 @@ enum HTMLRenderer {
 		let htmlCString = convertMarkdownToHTML(source.toCString())
 		let htmlString = String(cString: htmlCString!)
 		try throwIfErrored(fileType: "Markdown", returnValue: htmlString)
+		return htmlString
+	}
+
+	/// Converts a Pluto.jl notebook to HTML. `cache` is the contents of the notebook's
+	/// `.pluto-cache.toml` sidecar, which holds the cell outputs, or an empty string when there is
+	/// none.
+	static func renderPlutoNotebook(_ source: String, cache: String) throws -> String {
+		let htmlCString = convertPlutoNotebookToHTML(source.toCString(), cache.toCString())
+		let htmlString = String(cString: htmlCString!)
+		try throwIfErrored(fileType: "Pluto notebook", returnValue: htmlString)
 		return htmlString
 	}
 

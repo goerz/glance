@@ -78,3 +78,37 @@ func TestConvertNotebookToHTMLInvalid(t *testing.T) {
 	actual := convertToGoString(convertNotebookToHTML(convertToCString(source)))
 	assert.True(t, strings.HasPrefix(actual, "error: "))
 }
+
+func TestConvertPlutoNotebookToHTML(t *testing.T) {
+	source := "### A Pluto.jl notebook ###\n# v0.20.24\n\n" +
+		"# ╔═╡ aaaaaaaa-0000-0000-0000-000000000000\nx = 1 + 1\n\n" +
+		"# ╔═╡ Cell order:\n# ╠═aaaaaaaa-0000-0000-0000-000000000000\n"
+	actual := convertToGoString(
+		convertPlutoNotebookToHTML(convertToCString(source), convertToCString("")),
+	)
+	assert.True(t, strings.HasPrefix(actual, `<pluto-editor class="disable_ui">`))
+	assert.True(t, strings.HasSuffix(actual, `</pluto-editor>`))
+	assert.True(t, strings.Contains(actual, `<pre tabindex="0" class="chroma">`))
+}
+
+func TestConvertPlutoNotebookToHTMLWithCache(t *testing.T) {
+	source := "### A Pluto.jl notebook ###\n# v0.20.24\n\n" +
+		"# ╔═╡ aaaaaaaa-0000-0000-0000-000000000000\nx = 1\n\n" +
+		"# ╔═╡ Cell order:\n# ╠═aaaaaaaa-0000-0000-0000-000000000000\n"
+	cache := "format = 1\n\n[cells.aaaaaaaa-0000-0000-0000-000000000000]\n" +
+		"errored = false\nmime = \"text/plain\"\ntext_representation = \"2\"\n"
+	actual := convertToGoString(
+		convertPlutoNotebookToHTML(convertToCString(source), convertToCString(cache)),
+	)
+	assert.True(t, strings.Contains(actual, "<code>2</code>"))
+}
+
+// A plain Julia script must be rejected, so that the Swift side can fall back to the source-code
+// preview rather than rendering an empty notebook.
+func TestConvertPlutoNotebookToHTMLInvalid(t *testing.T) {
+	source := "x = 1\n"
+	actual := convertToGoString(
+		convertPlutoNotebookToHTML(convertToCString(source), convertToCString("")),
+	)
+	assert.True(t, strings.HasPrefix(actual, "error: "))
+}

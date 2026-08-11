@@ -12,6 +12,12 @@ class PreviewVCFactory {
 				return MarkdownPreview.self
 			case "ipynb":
 				return JupyterPreview.self
+			case "jl":
+				// A `.jl` file is a Pluto notebook only if it says so on its first line; every
+				// other Julia file keeps the plain source-code preview it has always had.
+				return PlutoPreview.isPlutoNotebook(fileURL: fileURL)
+					? PlutoPreview.self
+					: CodePreview.self
 			case "tar", "tgz":
 				return TARPreview.self
 			case "tab", "tsv":

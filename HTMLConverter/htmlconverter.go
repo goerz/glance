@@ -10,6 +10,7 @@ import (
 	htmlFormatter "github.com/alecthomas/chroma/formatters/html"
 	"github.com/alecthomas/chroma/lexers"
 	"github.com/alecthomas/chroma/styles"
+	"github.com/goerz/glance/plutotohtml"
 	"github.com/samuelmeuli/nbtohtml"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting"
@@ -45,9 +46,10 @@ func convertToGoString(cString *C.char) string {
 // Convention: Because all functions return C strings, errors are implemented as return values which
 // start with "error: ".
 
-//export convertCodeToHTML
 // convertCodeToHTML converts the provided source code string to HTML. Classes for syntax
 // highlighting are generated using Chroma.
+//
+//export convertCodeToHTML
 func convertCodeToHTML(source *C.char, lexer *C.char) *C.char {
 	sourceString := convertToGoString(source)
 	lexerString := convertToGoString(lexer)
@@ -86,9 +88,10 @@ func convertCodeToHTML(source *C.char, lexer *C.char) *C.char {
 	return convertToCString(htmlString)
 }
 
-//export convertMarkdownToHTML
 // convertMarkdownToHTML converts the provided Markdown string to HTML using goldmark. Classes for
 // syntax highlighting inside code blocks are generated using Chroma.
+//
+//export convertMarkdownToHTML
 func convertMarkdownToHTML(source *C.char) *C.char {
 	sourceString := convertToGoString(source)
 
@@ -107,8 +110,28 @@ func convertMarkdownToHTML(source *C.char) *C.char {
 	return convertToCString(htmlBuffer.String())
 }
 
-//export convertNotebookToHTML
+// convertPlutoNotebookToHTML converts a Pluto.jl notebook to HTML. `cache` is the contents of the
+// notebook's `.pluto-cache.toml` sidecar, which holds the cell outputs, or an empty string when
+// there is none — a notebook that has never been run still renders, just without its results.
+//
+//export convertPlutoNotebookToHTML
+func convertPlutoNotebookToHTML(source *C.char, cache *C.char) *C.char {
+	sourceString := convertToGoString(source)
+	cacheString := convertToGoString(cache)
+
+	htmlString, err := plutotohtml.Convert(sourceString, cacheString)
+	if err != nil {
+		errMessage := fmt.Sprintf("error: Could not convert Pluto notebook to HTML: %s", err)
+
+		return convertToCString(errMessage)
+	}
+
+	return convertToCString(htmlString)
+}
+
 // convertNotebookToHTML converts the provided Jupyter Notebook JSON to HTML using `nbtohtml`.
+//
+//export convertNotebookToHTML
 func convertNotebookToHTML(source *C.char) *C.char {
 	sourceString := convertToGoString(source)
 

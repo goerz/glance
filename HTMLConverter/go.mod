@@ -1,14 +1,16 @@
-module github.com/chamburr/glance
+module github.com/goerz/glance
 
 go 1.25.0
 
 require (
+	github.com/BurntSushi/toml v1.6.0
 	github.com/alecthomas/chroma v0.10.0
 	github.com/samuelmeuli/nbtohtml v0.5.0
 	github.com/stretchr/testify v1.11.1
 	github.com/tdewolff/minify/v2 v2.24.10
 	github.com/yuin/goldmark v1.8.0
 	github.com/yuin/goldmark-highlighting v0.0.0-20220208100518-594be1970594
+	golang.org/x/net v0.57.0
 )
 
 require (
@@ -21,7 +23,6 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.27 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/tdewolff/parse/v2 v2.8.10 // indirect
-	golang.org/x/net v0.52.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

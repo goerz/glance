@@ -108,9 +108,11 @@
 		7EB3647F244B03CC00D7F96F /* shared-main.css in Resources */ = {isa = PBXBuildFile; fileRef = 7EB36439244B03CC00D7F96F /* shared-main.css */; };
 		7EB36480244B03CC00D7F96F /* shared-chroma.css in Resources */ = {isa = PBXBuildFile; fileRef = 7EB3643A244B03CC00D7F96F /* shared-chroma.css */; };
 		7EB36482244B03CC00D7F96F /* markdown-main.css in Resources */ = {isa = PBXBuildFile; fileRef = 7EB3643D244B03CC00D7F96F /* markdown-main.css */; };
+		10A1B2C22F80010000AA0103 /* pluto-main.css in Resources */ = {isa = PBXBuildFile; fileRef = 10A1B2C32F80010000AA0104 /* pluto-main.css */; };
 		7EB36488244B65D900D7F96F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB36487244B65D900D7F96F /* String.swift */; };
 		7EB3648A244B665700D7F96F /* ZIPPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB36489244B665700D7F96F /* ZIPPreview.swift */; };
 		7EB7491924228549007265A4 /* JupyterPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7491824228549007265A4 /* JupyterPreview.swift */; };
+		10A1B2C02F80010000AA0101 /* PlutoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A1B2C12F80010000AA0102 /* PlutoPreview.swift */; };
 		7ECC8CF2240CB4CC000D6970 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECC8CF1240CB4CC000D6970 /* AppDelegate.swift */; };
 		7ECC8CF4240CB4CC000D6970 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECC8CF3240CB4CC000D6970 /* ViewController.swift */; };
 		7ECC8CF6240CB4CC000D6970 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ECC8CF5240CB4CC000D6970 /* Assets.xcassets */; };
@@ -267,9 +269,11 @@
 		7EB36439244B03CC00D7F96F /* shared-main.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "shared-main.css"; sourceTree = "<group>"; };
 		7EB3643A244B03CC00D7F96F /* shared-chroma.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "shared-chroma.css"; sourceTree = "<group>"; };
 		7EB3643D244B03CC00D7F96F /* markdown-main.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "markdown-main.css"; sourceTree = "<group>"; };
+		10A1B2C32F80010000AA0104 /* pluto-main.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "pluto-main.css"; sourceTree = "<group>"; };
 		7EB36487244B65D900D7F96F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		7EB36489244B665700D7F96F /* ZIPPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZIPPreview.swift; sourceTree = "<group>"; };
 		7EB7491824228549007265A4 /* JupyterPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JupyterPreview.swift; sourceTree = "<group>"; };
+		10A1B2C12F80010000AA0102 /* PlutoPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlutoPreview.swift; sourceTree = "<group>"; };
 		7ECC8CEE240CB4CC000D6970 /* Glance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ECC8CF1240CB4CC000D6970 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7ECC8CF3240CB4CC000D6970 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 			children = (
 				7EB363F6244B03CC00D7F96F /* jupyter */,
 				7EB3643B244B03CC00D7F96F /* markdown */,
+				10A1B2C42F80010000AA0105 /* pluto */,
 				7EB36438244B03CC00D7F96F /* shared */,
 			);
 			path = Resources;
@@ -360,6 +365,7 @@
 				7E1DC529240E6FDE00D0A061 /* CodePreview.swift */,
 				7EB7491824228549007265A4 /* JupyterPreview.swift */,
 				7E1DC520240E6D8000D0A061 /* MarkdownPreview.swift */,
+				10A1B2C12F80010000AA0102 /* PlutoPreview.swift */,
 				7E7A9DAC244F24B900276E51 /* TARPreview.swift */,
 				7E413F7F2418DD6200CFBB1D /* TSVPreview.swift */,
 				7EB36489244B665700D7F96F /* ZIPPreview.swift */,
@@ -544,6 +550,14 @@
 				7EB3643A244B03CC00D7F96F /* shared-chroma.css */,
 			);
 			path = shared;
+			sourceTree = "<group>";
+		};
+		10A1B2C42F80010000AA0105 /* pluto */ = {
+			isa = PBXGroup;
+			children = (
+				10A1B2C32F80010000AA0104 /* pluto-main.css */,
+			);
+			path = pluto;
 			sourceTree = "<group>";
 		};
 		7EB3643B244B03CC00D7F96F /* markdown */ = {
@@ -791,6 +805,7 @@
 				7EB36444244B03CC00D7F96F /* KaTeX_AMS-Regular.ttf in Resources */,
 				7EB36464244B03CC00D7F96F /* KaTeX_AMS-Regular.woff in Resources */,
 				7EB36482244B03CC00D7F96F /* markdown-main.css in Resources */,
+				10A1B2C22F80010000AA0103 /* pluto-main.css in Resources */,
 				7EB36462244B03CC00D7F96F /* KaTeX_Size4-Regular.woff in Resources */,
 				7EB3644A244B03CC00D7F96F /* KaTeX_Caligraphic-Bold.woff2 in Resources */,
 				7EB3644D244B03CC00D7F96F /* KaTeX_Caligraphic-Regular.woff in Resources */,
@@ -853,6 +868,7 @@
 				7EAC01EC240D220B009505D0 /* File.swift in Sources */,
 				7E458AED2439176B0091BD0F /* Date.swift in Sources */,
 				7EB7491924228549007265A4 /* JupyterPreview.swift in Sources */,
+				10A1B2C02F80010000AA0101 /* PlutoPreview.swift in Sources */,
 				7E1B16922455D93E00E2B84D /* HTMLRenderer.swift in Sources */,
 				7EE10F84244F679B007214D8 /* Log.swift in Sources */,
 				7E21C88E24390BE400818EB2 /* Stats.swift in Sources */,
